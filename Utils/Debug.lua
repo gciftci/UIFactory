@@ -6,6 +6,10 @@ Module "Debug"
 ---@type table Local reference to Addon-Namespace
 local UIFactory = select(2, ...)
 
+---Sequencing
+local sfile = "[Debug.lua]"
+UIFactory.sequence.add("> start", sfile)    -- sequence
+
 ---@Mod Debug
 local Debug = UIFactory.Object.Register("Debug")
 
@@ -28,11 +32,13 @@ local debugMessages = {
 ---@param str string|nil
 ---@param type? debugMessages
 function Debug:print(str, type)
-  if Config.debug then -- if turned on
-    if Config.debugType == 0 then -- if ALL messages active
+  if UIFactory_DB.debug then -- if turned on
+    if UIFactory_DB.debugType == 0 then -- if ALL messages active
       print(string.format("[%s] %s", debugMessages[(type and type or 3)], (str and str or "?")))
     else -- if certain Type of messages are activated
       print(string.format("[%s] %s", "msg", (str and str or "?")))
     end
   end
 end
+
+UIFactory.sequence.add("> end", sfile)    -- sequence

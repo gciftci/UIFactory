@@ -12,5 +12,6 @@ Utils\Object.lua
 Utils\Config.lua
 Utils\Debug.lua
 Utils\Factory.lua
+Utils\Events.lua
 
 core.lua
